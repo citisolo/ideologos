@@ -18,6 +18,7 @@ export const IdeaList = ({
       onTitleChange={onItemTitleChange}
       onTextChange={onItemTextChange}
       onEdit={onEdit} />));
+
   return (<React.Fragment>
     {listItems}
   </React.Fragment>);
