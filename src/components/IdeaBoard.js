@@ -2,8 +2,16 @@ import React, { useState } from 'react';
 import _ from 'lodash';
 import { IdeaCard as IdeaCardInput } from "./IdeaCard";
 import { IdeaList } from './IdeaList';
+import styled from 'styled-components';
 
 const ideaInputId = _.uniqueId("idea-input-");
+
+const IdeaBoardWrapper = styled.div`
+  #container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+`;
 
 export const IdeaBoard = () => {
   const [ideaList, setIdeaListValues] = useState([]);
@@ -49,25 +57,30 @@ export const IdeaBoard = () => {
 
   const onAddIdea = () => {
     setIdeaListValues([...ideaList, { id: _.uniqueId("item-"), title, text }]);
+    setText("");
+    setTitle("");
   }
 
 
-  return (<div id="container">
-    <IdeaCardInput
-      key={ideaInputId}
-      id={ideaInputId}
-      buttonLabel="Add"
-      text={text}
-      title={title}
-      onEdit={onAddIdea}
-      onTitleChange={onInputTitleChange}
-      onTextChange={onInputTextChange}
-    />
-    <IdeaList
-      list={ideaList}
-      onItemTitleChange={onListTitleChange}
-      onItemTextChange={onListTextChange}
-      onEdit={onEditIdea} />
-
-  </div>);
+  return (
+    <IdeaBoardWrapper>
+      <div id="container">
+        <IdeaCardInput
+          key={ideaInputId}
+          id={ideaInputId}
+          buttonLabel="Add"
+          text={text}
+          title={title}
+          onEdit={onAddIdea}
+          onTitleChange={onInputTitleChange}
+          onTextChange={onInputTextChange}
+        />
+        <IdeaList
+          list={ideaList}
+          onItemTitleChange={onListTitleChange}
+          onItemTextChange={onListTextChange}
+          onEdit={onEditIdea}
+        />
+      </div>
+    </IdeaBoardWrapper>);
 }

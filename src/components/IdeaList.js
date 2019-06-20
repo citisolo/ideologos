@@ -12,6 +12,7 @@ export const IdeaList = ({
       key={item.id}
       title={item.title}
       text={item.text}
+      isEditable={false}
       buttonLabel="Remove"
       onTitleChange={onItemTitleChange}
       onTextChange={onItemTextChange}
