@@ -11,6 +11,13 @@ const IdeaBoardWrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
   }
+
+  @media (max-width: 500px) {
+    #container {
+      margin: auto;
+      display: column;
+    }
+  } 
 `;
 
 export const IdeaBoard = () => {

@@ -4,6 +4,10 @@ import styled from 'styled-components';
 
 
 const IdeaCardWrapper = styled.div`
+  @media (max-width: 500px) {
+    margin: auto;
+  } 
+
   .list-item {
     background: white;
     padding: 1em;
