@@ -80,6 +80,7 @@ export const IdeaCard = ({
   onEdit,
   onTextChange,
   onTitleChange }) => {
+
   const [itemGroupClass, setItemGroupClass] = useState(isEditable ? 'list-item-group' : 'readonly-list-item-group');
   const [isReadOnly, setReadOnly] = useState(!isEditable);
 
@@ -96,10 +97,10 @@ export const IdeaCard = ({
     <IdeaCardWrapper>
       <div className="list-item" onDoubleClick={onToggleReadOnly} >
         <div className={itemGroupClass}>
-          <input maxLength="140" readOnly={isReadOnly} type="text" className="idea-title-input" name="idea-title-input" value={title} onChange={(e) => onTitleChange({ id, ideaTitle: e.target.value })} />
+          <input readOnly={isReadOnly} type="text" className="idea-title-input" name="idea-title-input" value={title} onChange={(e) => onTitleChange({ id, ideaTitle: e.target.value })} />
         </div>
         <div className={itemGroupClass}>
-          <textarea readOnly={isReadOnly} className="idea-text" rows="10" value={text} onChange={(e) => onTextChange({ id, ideaText: e.target.value })}></textarea>
+          <textarea maxLength="140" readOnly={isReadOnly} className="idea-text" rows="10" value={text} onChange={(e) => onTextChange({ id, ideaText: e.target.value })}></textarea>
         </div>
         <div className="list-item-group">
           <button id="add-idea" onClick={() => onEdit({ id })}>{buttonLabel}</button>

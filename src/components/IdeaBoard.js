@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { IdeaCard as IdeaCardInput } from "./IdeaCard";
 import { IdeaList } from './IdeaList';
@@ -20,8 +21,8 @@ const IdeaBoardWrapper = styled.div`
   } 
 `;
 
-export const IdeaBoard = () => {
-  const [ideaList, setIdeaListValues] = useState([]);
+export const IdeaBoard = ({ list }) => {
+  const [ideaList, setIdeaListValues] = useState(list);
   const [text, setText] = useState('');
   const [title, setTitle] = useState('');
 
@@ -90,4 +91,13 @@ export const IdeaBoard = () => {
         />
       </div>
     </IdeaBoardWrapper>);
+}
+
+
+IdeaBoard.propTypes = {
+  list: PropTypes.array,
+}
+
+IdeaBoard.defaultProps = {
+  list: [],
 }
