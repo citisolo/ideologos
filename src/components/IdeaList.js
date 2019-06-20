@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { IdeaCard } from "./IdeaCard";
 
 export const IdeaList = ({
@@ -13,7 +14,7 @@ export const IdeaList = ({
       title={item.title}
       text={item.text}
       isEditable={false}
-      buttonLabel="Remove"
+      buttonLabel="Delete"
       onTitleChange={onItemTitleChange}
       onTextChange={onItemTextChange}
       onEdit={onEdit} />));
@@ -21,3 +22,10 @@ export const IdeaList = ({
     {listItems}
   </React.Fragment>);
 };
+
+IdeaList.propTypes = {
+  list: PropTypes.array.isRequired,
+  onItemTextChange: PropTypes.func.isRequired,
+  onItemTitleChange: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired
+}
