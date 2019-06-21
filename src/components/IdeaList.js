@@ -31,3 +31,7 @@ IdeaList.propTypes = {
   onItemTitleChange: PropTypes.func.isRequired,
   onEdit: PropTypes.func.isRequired
 }
+
+IdeaList.defaultProps = {
+  list: [], //fallback
+}

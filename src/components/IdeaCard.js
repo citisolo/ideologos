@@ -57,9 +57,6 @@ const IdeaCardWrapper = styled.div`
       border: none;
     }
 
-    #add-idea {
-      visibility: hidden;
-    }
    }
 
    .readonly-list-item-group :focus{
@@ -108,7 +105,7 @@ export const IdeaCard = ({
           <textarea maxLength="140" readOnly={isReadOnly} className="idea-text" rows="10" value={text} onChange={(e) => onTextChange({ id, ideaText: e.target.value })}></textarea>
         </div>
         <div className="list-item-group">
-          <button id="add-idea" onClick={() => onEdit({ id })}>{buttonLabel}</button>
+          <button onClick={() => onEdit({ id })}>{buttonLabel}</button>
           {timestamp && <Moment format="ddd hh:mm:ss" >{timestamp}</Moment>}
         </div>
       </div>

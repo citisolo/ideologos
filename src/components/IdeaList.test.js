@@ -1,50 +1,24 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import { shallow } from 'enzyme';
-// import IdeaList from './IdeaList';
+import React from 'react';
+import { shallow, mount } from 'enzyme';
+import { IdeaList } from './IdeaList';
+import { IdeaCard } from './IdeaCard';
+import _ from 'lodash';
 
-// describe('IdeaList tests', () => {
-//   it('renders without crashing', () => {
-//     const div = document.createElement('div');
-//     ReactDOM.render(<App />, div);
-//     ReactDOM.unmountComponentAtNode(div);
-//   });
+describe('IdeaList tests', () => {
+  it('renders without crashing', () => {
+    shallow(<IdeaList />);
+  });
 
-//   it('displays the right text', () => {
-//     const wrapper = shallow(
-//       <IdeaCard
-//         id={ideaInputId}
-//         buttonLabel="Add"
-//         text={text}
-//         title={title}
-//         onEdit={onAddIdea}
-//         onTitleChange={onInputTitleChange}
-//         onTextChange={onInputTextChange} />
-//     );
+  it('handles empty lists', () => {
+    shallow(<IdeaList list={[]} />);
+  });
 
-//     expect(
-//       wrapper.contains("")
-//     )
+  it('renders all items', () => {
+    const list = [...Array(5).keys()].map(item => ({ id: "", key: _.uniqueId(), title: "", text: "", timestamp: new Date() }));
+    const wrapper = mount(<IdeaList list={list} />);
 
+    expect(wrapper.find(IdeaCard).length).toBe(5);
 
-//     it('remains read only', () => {
-//       const wrapper = shallow(
-//         <IdeaCard
-//           key={ideaInputId}
-//           id={ideaInputId}
-//           buttonLabel="Add"
-//           text={text}
-//           title={title}
-//           onEdit={onAddIdea}
-//           onTitleChange={onInputTitleChange}
-//           onTextChange={onInputTextChange} />
-//       );
+  });
 
-//       expect(
-//         wrapper.contains("")
-//       )
-
-//     });
-//   });
-
-// });
+});

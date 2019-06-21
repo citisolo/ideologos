@@ -16,13 +16,4 @@ describe('IdeaCard tests', () => {
     expect(wrapper.contains(<time></time>));
   });
 
-  // it('remains read only', () => {
-  //   const wrapper = shallow(<IdeaCard />, mockContext);
-
-  //   expect(
-  //     wrapper.contains("")
-  //   )
-
-  // });
-
 });

@@ -56,11 +56,11 @@ export const IdeaBoard = ({ list }) => {
     setIdeaListValues(ideaList.filter(item => item.id !== id));
   }
 
-  const onInputTitleChange = ({ id, ideaTitle }) => {
+  const onInputTitleChange = ({ ideaTitle }) => {
     setTitle(ideaTitle);
   }
 
-  const onInputTextChange = ({ id, ideaText }) => {
+  const onInputTextChange = ({ ideaText }) => {
     setText(ideaText);
   }
 
