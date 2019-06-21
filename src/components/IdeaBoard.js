@@ -53,7 +53,9 @@ export const IdeaBoard = ({ list }) => {
   }
 
   const onEditIdea = ({ id }) => {
-    setIdeaListValues(ideaList.filter(item => item.id !== id));
+    const newList = ideaList.filter(item => item.id !== id);
+    setIdeaListValues(newList);
+    localStorage.setItem("idea-list", JSON.stringify(newList))
   }
 
   const onInputTitleChange = ({ ideaTitle }) => {
@@ -66,9 +68,11 @@ export const IdeaBoard = ({ list }) => {
 
   const onAddIdea = () => {
     const timestamp = new Date();
-    setIdeaListValues([...ideaList, { id: _.uniqueId("item-"), timestamp, title, text }]);
+    const newList = [...ideaList, { id: _.uniqueId("item-"), timestamp, title, text }];
+    setIdeaListValues(newList);
     setText("");
     setTitle("");
+    localStorage.setItem("idea-list", JSON.stringify(newList)); //FIXME: do this properly
   }
 
 
