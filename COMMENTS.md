@@ -7,5 +7,7 @@
  - Fix CSS Issues (overflowing elements, naming clashes with library )
  - Set up travis ci with github 
  - Refactor repetitive code sequence for persisting to `localStorage`
+ - Optimize the way of handling character input for the `IdeaList` component
+  
 
  
