@@ -18,7 +18,6 @@ const IdeaCardWrapper = styled.div`
     border-radius: 3px;
     margin: 1em;
     box-shadow: 0 8px 32px #aaa;
-    width: 14em;
   }
 
   .list-item-group {
@@ -30,7 +29,7 @@ const IdeaCardWrapper = styled.div`
 
   .list-item textarea {
     resize: none; 
- 
+    width: 100%;
   }
 
   .list-item input {
@@ -103,7 +102,7 @@ export const IdeaCard = ({
     <IdeaCardWrapper>
       <div className="list-item" onDoubleClick={onToggleReadOnly} >
         <div className={itemGroupClass}>
-          <input  {...focusProps} type="text" className="idea-title-input" name="idea-title-input" value={title} onChange={(e) => onTitleChange({ id, ideaTitle: e.target.value })} />
+          <input type="text" className="idea-title-input" name="idea-title-input" value={title} {...focusProps} onChange={(e) => onTitleChange({ id, ideaTitle: e.target.value })} />
         </div>
         <div className={itemGroupClass}>
           <textarea maxLength="140" className="idea-text" rows="10" value={text} onChange={(e) => onTextChange({ id, ideaText: e.target.value })}></textarea>

@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
+import uniqid from 'uniqid';
 import { IdeaCard as IdeaCardInput } from "./IdeaCard";
 import { IdeaList } from './IdeaList';
+import { NavBar } from './NavBar';
 import styled from 'styled-components';
 
 
-const ideaInputId = _.uniqueId("idea-input-");
+
+const ideaInputId = uniqid("idea-input-");
 
 const IdeaBoardWrapper = styled.div`
   #container {
@@ -68,16 +70,34 @@ export const IdeaBoard = ({ list }) => {
 
   const onAddIdea = () => {
     const timestamp = new Date();
-    const newList = [...ideaList, { id: _.uniqueId("item-"), timestamp, title, text }];
+    const newList = [...ideaList, { id: uniqid("item-"), timestamp, title, text }];
     setIdeaListValues(newList);
     setText("");
     setTitle("");
     localStorage.setItem("idea-list", JSON.stringify(newList)); //FIXME: do this properly
   }
 
+  const sortByDate = () => {
+    const sortedList = ideaList.sort((a, b) => {
+      return new Date(b.timestamp) - new Date(a.timestamp);
+    });
+    //console.log(sortedList);
+    setIdeaListValues([...sortedList]);
+  }
+
+  const sortByTitle = () => {
+    //console.log("howdy")
+    const sortedList = ideaList.sort((a, b) => {
+      return a.title.localeCompare(b.title);
+    });
+    //console.log(sortedList);
+    setIdeaListValues([...sortedList]);
+  }
+
 
   return (
     <IdeaBoardWrapper>
+      <NavBar handleSortByDate={sortByDate} handleSortByTitle={sortByTitle} />
       <div id="container">
         <IdeaCardInput
           key={ideaInputId}

@@ -7,18 +7,23 @@ export const IdeaList = ({
   onItemTextChange,
   onItemTitleChange,
   onEdit }) => {
-  const listItems = list.map((item, index) => (
-    <IdeaCard
-      id={item.id}
-      key={item.id}
-      title={item.title}
-      text={item.text}
-      timestamp={item.timestamp}
-      isEditable={false}
-      buttonLabel="Delete"
-      onTitleChange={onItemTitleChange}
-      onTextChange={onItemTextChange}
-      onEdit={onEdit} />));
+
+  let listItems = [];
+
+  if (list != null) {
+    listItems = list.map((item, index) => (
+      <IdeaCard
+        id={item.id}
+        key={item.id}
+        title={item.title}
+        text={item.text}
+        timestamp={item.timestamp}
+        isEditable={false}
+        buttonLabel="Delete"
+        onTitleChange={onItemTitleChange}
+        onTextChange={onItemTextChange}
+        onEdit={onEdit} />));
+  }
 
   return (<React.Fragment>
     {listItems}
