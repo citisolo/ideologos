@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Moment from 'react-moment';
 
+import { useFocus } from '../customHooks.js';
+
+
+
 const IdeaCardWrapper = styled.div`
   @media (max-width: 500px) {
     margin: auto;
@@ -64,7 +68,7 @@ const IdeaCardWrapper = styled.div`
    }
 
 
-   #add-idea {
+   button {
     padding: .7rem;
     border-radius: .3rem;
     border: 1px solid rgba(34,36,38,.15);
@@ -85,12 +89,12 @@ export const IdeaCard = ({
 
   const [itemGroupClass, setItemGroupClass] = useState(isEditable ? 'list-item-group' : 'readonly-list-item-group');
   const [isReadOnly, setReadOnly] = useState(!isEditable);
-
+  const [setFocus, focusProps] = useFocus(true);
 
   const onToggleReadOnly = () => {
     if (!isEditable) {
-      setItemGroupClass(itemGroupClass === "list-item-group" ? "readonly-list-item-group" : "list-item-group");
-      setReadOnly(!isReadOnly);
+      // setItemGroupClass(itemGroupClass === "list-item-group" ? "readonly-list-item-group" : "list-item-group");
+      // setReadOnly(!isReadOnly);
     }
   }
 
@@ -99,10 +103,10 @@ export const IdeaCard = ({
     <IdeaCardWrapper>
       <div className="list-item" onDoubleClick={onToggleReadOnly} >
         <div className={itemGroupClass}>
-          <input readOnly={isReadOnly} type="text" className="idea-title-input" name="idea-title-input" value={title} onChange={(e) => onTitleChange({ id, ideaTitle: e.target.value })} />
+          <input  {...focusProps} type="text" className="idea-title-input" name="idea-title-input" value={title} onChange={(e) => onTitleChange({ id, ideaTitle: e.target.value })} />
         </div>
         <div className={itemGroupClass}>
-          <textarea maxLength="140" readOnly={isReadOnly} className="idea-text" rows="10" value={text} onChange={(e) => onTextChange({ id, ideaText: e.target.value })}></textarea>
+          <textarea maxLength="140" className="idea-text" rows="10" value={text} onChange={(e) => onTextChange({ id, ideaText: e.target.value })}></textarea>
         </div>
         <div className="list-item-group">
           <button onClick={() => onEdit({ id })}>{buttonLabel}</button>
