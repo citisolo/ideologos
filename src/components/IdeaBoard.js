@@ -31,33 +31,37 @@ export const IdeaBoard = ({ list }) => {
 
 
   const onListTextChange = ({ id, ideaText }) => {
-    setIdeaListValues(
-      ideaList.map(item => {
-        if (item.id === id) {
-          return { ...item, text: ideaText, timestamp: new Date() }
-        } else {
-          return item;
-        }
-      })
-    );
+    const newList = ideaList.map(item => {
+      if (item.id === id) {
+        return { ...item, text: ideaText, timestamp: new Date() }
+      } else {
+        return item;
+      }
+    });
+
+    setIdeaListValues(newList);
+
+
+    localStorage.setItem("idea-list", JSON.stringify(newList))
   }
 
   const onListTitleChange = ({ id, ideaTitle }) => {
-    setIdeaListValues(
-      ideaList.map(item => {
-        if (item.id === id) {
-          return { ...item, title: ideaTitle, timestamp: new Date() }
-        } else {
-          return item;
-        }
-      })
-    );
+    const newList = ideaList.map(item => {
+      if (item.id === id) {
+        return { ...item, title: ideaTitle, timestamp: new Date() }
+      } else {
+        return item;
+      }
+    });
+
+    setIdeaListValues(newList);
+    localStorage.setItem("idea-list", JSON.stringify(newList));
   }
 
   const onEditIdea = ({ id }) => {
     const newList = ideaList.filter(item => item.id !== id);
     setIdeaListValues(newList);
-    localStorage.setItem("idea-list", JSON.stringify(newList))
+    localStorage.setItem("idea-list", JSON.stringify(newList));
   }
 
   const onInputTitleChange = ({ ideaTitle }) => {
@@ -81,16 +85,16 @@ export const IdeaBoard = ({ list }) => {
     const sortedList = ideaList.sort((a, b) => {
       return new Date(b.timestamp) - new Date(a.timestamp);
     });
-    //console.log(sortedList);
-    setIdeaListValues([...sortedList]);
+
+    setIdeaListValues([...sortedList]); //should we persists this change ?
+    // localStorage.setItem("idea-list", JSON.stringify(newList));
   }
 
   const sortByTitle = () => {
-    //console.log("howdy")
     const sortedList = ideaList.sort((a, b) => {
       return a.title.localeCompare(b.title);
     });
-    //console.log(sortedList);
+
     setIdeaListValues([...sortedList]);
   }
 
