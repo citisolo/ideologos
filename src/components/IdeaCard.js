@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Moment from 'react-moment';
 
 const IdeaCardWrapper = styled.div`
   @media (max-width: 500px) {
@@ -18,6 +19,9 @@ const IdeaCardWrapper = styled.div`
 
   .list-item-group {
     margin: 1em;
+    time {
+      margin-left:1em;
+    }
   }
 
   .list-item textarea {
@@ -75,6 +79,7 @@ export const IdeaCard = ({
   id,
   title,
   text,
+  timestamp,
   isEditable,
   buttonLabel,
   onEdit,
@@ -104,6 +109,7 @@ export const IdeaCard = ({
         </div>
         <div className="list-item-group">
           <button id="add-idea" onClick={() => onEdit({ id })}>{buttonLabel}</button>
+          {timestamp && <Moment format="ddd hh:mm:ss" >{timestamp}</Moment>}
         </div>
       </div>
     </IdeaCardWrapper>);
@@ -114,6 +120,7 @@ IdeaCard.propTypes = {
   id: PropTypes.any.isRequired,
   title: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
+  timestamp: PropTypes.instanceOf(Date),
   isEditable: PropTypes.bool,
   buttonLabel: PropTypes.string.isRequired,
   onEdit: PropTypes.func.isRequired,

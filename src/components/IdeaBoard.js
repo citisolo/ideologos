@@ -5,6 +5,7 @@ import { IdeaCard as IdeaCardInput } from "./IdeaCard";
 import { IdeaList } from './IdeaList';
 import styled from 'styled-components';
 
+
 const ideaInputId = _.uniqueId("idea-input-");
 
 const IdeaBoardWrapper = styled.div`
@@ -31,7 +32,7 @@ export const IdeaBoard = ({ list }) => {
     setIdeaListValues(
       ideaList.map(item => {
         if (item.id === id) {
-          return { ...item, text: ideaText }
+          return { ...item, text: ideaText, timestamp: new Date() }
         } else {
           return item;
         }
@@ -43,7 +44,7 @@ export const IdeaBoard = ({ list }) => {
     setIdeaListValues(
       ideaList.map(item => {
         if (item.id === id) {
-          return { ...item, title: ideaTitle }
+          return { ...item, title: ideaTitle, timestamp: new Date() }
         } else {
           return item;
         }
@@ -64,7 +65,8 @@ export const IdeaBoard = ({ list }) => {
   }
 
   const onAddIdea = () => {
-    setIdeaListValues([...ideaList, { id: _.uniqueId("item-"), title, text }]);
+    const timestamp = new Date();
+    setIdeaListValues([...ideaList, { id: _.uniqueId("item-"), timestamp, title, text }]);
     setText("");
     setTitle("");
   }
