@@ -1,50 +1,28 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
-import IdeaCard from './IdeaCard';
+
+import { IdeaCard } from './IdeaCard';
+
 
 describe('IdeaCard tests', () => {
+
+
   it('renders without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<App />, div);
-    ReactDOM.unmountComponentAtNode(div);
+    shallow(<IdeaCard />);
   });
 
-  it('displays the right text', () => {
-    const wrapper = shallow(
-      <IdeaCard
-        id={ideaInputId}
-        buttonLabel="Add"
-        text={text}
-        title={title}
-        onEdit={onAddIdea}
-        onTitleChange={onInputTitleChange}
-        onTextChange={onInputTextChange} />
-    );
-
-    expect(
-      wrapper.contains("")
-    )
-
+  it('renders timestamp', () => {
+    const wrapper = shallow(<IdeaCard timestamp={new Date()} />);
+    expect(wrapper.contains(<time></time>));
   });
 
-  it('remains read only', () => {
-    const wrapper = shallow(
-      <IdeaCard
-        key={ideaInputId}
-        id={ideaInputId}
-        buttonLabel="Add"
-        text={text}
-        title={title}
-        onEdit={onAddIdea}
-        onTitleChange={onInputTitleChange}
-        onTextChange={onInputTextChange} />
-    );
+  // it('remains read only', () => {
+  //   const wrapper = shallow(<IdeaCard />, mockContext);
 
-    expect(
-      wrapper.contains("")
-    )
+  //   expect(
+  //     wrapper.contains("")
+  //   )
 
-  });
+  // });
 
 });
