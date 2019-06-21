@@ -1,4 +1,8 @@
+
 # Ideologos - Idea List App
+
+
+![Idealogos app](https://i.imgur.com/LxMAgCl.png)
 
 Idealogos is an idea board app that can be used to create, update, delete and sort items.
 
