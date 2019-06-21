@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Moment from 'react-moment';
 
-import { useFocus } from '../customHooks.js';
-
-
+import { useFocus } from '../customHooks';
 
 const IdeaCardWrapper = styled.div`
   @media (max-width: 500px) {
@@ -84,40 +82,42 @@ export const IdeaCard = ({
   buttonLabel,
   onEdit,
   onTextChange,
-  onTitleChange }) => {
-
-  const [itemGroupClass, setItemGroupClass] = useState(isEditable ? 'list-item-group' : 'readonly-list-item-group');
-  const [isReadOnly, setReadOnly] = useState(!isEditable);
-  const [setFocus, focusProps] = useFocus(true);
+  onTitleChange,
+}) => {
+  const [itemGroupClass] = useState(isEditable ? 'list-item-group' : 'readonly-list-item-group');
+  // const [isReadOnly, setReadOnly] = useState(!isEditable);
+  const [, focusProps] = useFocus(true);
 
   const onToggleReadOnly = () => {
     if (!isEditable) {
-      // setItemGroupClass(itemGroupClass === "list-item-group" ? "readonly-list-item-group" : "list-item-group");
+      // setItemGroupClass(itemGroupClass === "list-item-group" ?
+      // "readonly-list-item-group" : "list-item-group");
       // setReadOnly(!isReadOnly);
     }
-  }
+  };
 
 
   return (
     <IdeaCardWrapper>
-      <div className="list-item" onDoubleClick={onToggleReadOnly} >
+      <div className="list-item" onDoubleClick={onToggleReadOnly}>
         <div className={itemGroupClass}>
-          <input type="text" className="idea-title-input" name="idea-title-input" value={title} {...focusProps} onChange={(e) => onTitleChange({ id, ideaTitle: e.target.value })} />
+          <input type="text" className="idea-title-input" name="idea-title-input" value={title} {...focusProps} onChange={e => onTitleChange({ id, ideaTitle: e.target.value })} />
         </div>
         <div className={itemGroupClass}>
-          <textarea maxLength="140" className="idea-text" rows="10" value={text} onChange={(e) => onTextChange({ id, ideaText: e.target.value })}></textarea>
+          <textarea maxLength="140" className="idea-text" rows="10" value={text} onChange={e => onTextChange({ id, ideaText: e.target.value })} />
         </div>
         <div className="list-item-group">
-          <button onClick={() => onEdit({ id })}>{buttonLabel}</button>
-          {timestamp && <Moment format="ddd hh:mm:ss" >{timestamp}</Moment>}
+          <button type="button" onClick={() => onEdit({ id })}>{buttonLabel}</button>
+          {timestamp && <Moment format="ddd hh:mm:ss">{timestamp}</Moment>}
         </div>
       </div>
-    </IdeaCardWrapper>);
-}
+    </IdeaCardWrapper>
+  );
+};
 
 
 IdeaCard.propTypes = {
-  id: PropTypes.any.isRequired,
+  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   timestamp: PropTypes.instanceOf(Date),
@@ -125,9 +125,10 @@ IdeaCard.propTypes = {
   buttonLabel: PropTypes.string.isRequired,
   onEdit: PropTypes.func.isRequired,
   onTextChange: PropTypes.func.isRequired,
-  onTitleChange: PropTypes.func.isRequired
+  onTitleChange: PropTypes.func.isRequired,
 };
 
 IdeaCard.defaultProps = {
   isEditable: true,
-}
+  timestamp: null,
+};

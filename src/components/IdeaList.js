@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { IdeaCard } from "./IdeaCard";
+import { IdeaCard } from './IdeaCard';
 
 export const IdeaList = ({
   list,
   onItemTextChange,
   onItemTitleChange,
-  onEdit }) => {
-
+  onEdit,
+}) => {
   let listItems = [];
 
   if (list != null) {
-    listItems = list.map((item, index) => (
+    listItems = list.map(item => (
       <IdeaCard
         id={item.id}
         key={item.id}
@@ -22,21 +22,25 @@ export const IdeaList = ({
         buttonLabel="Delete"
         onTitleChange={onItemTitleChange}
         onTextChange={onItemTextChange}
-        onEdit={onEdit} />));
+        onEdit={onEdit}
+      />
+    ));
   }
 
-  return (<React.Fragment>
-    {listItems}
-  </React.Fragment>);
+  return (
+    <React.Fragment>
+      {listItems}
+    </React.Fragment>
+  );
 };
 
 IdeaList.propTypes = {
-  list: PropTypes.array.isRequired,
+  list: PropTypes.instanceOf(Array),
   onItemTextChange: PropTypes.func.isRequired,
   onItemTitleChange: PropTypes.func.isRequired,
-  onEdit: PropTypes.func.isRequired
-}
+  onEdit: PropTypes.func.isRequired,
+};
 
 IdeaList.defaultProps = {
-  list: [], //fallback
-}
+  list: [],
+};

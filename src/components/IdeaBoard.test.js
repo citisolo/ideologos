@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { render, fireEvent, getByTestId } from "react-testing-library";
 import { IdeaBoard } from './IdeaBoard';
 import { IdeaCard } from './IdeaCard';
 
@@ -14,5 +13,4 @@ describe('IdeaBoard tests', () => {
     wrapper.find('button').simulate('click');
     expect(wrapper.find(IdeaCard).exists()).toBe(true);
   });
-
 });

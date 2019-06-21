@@ -1,5 +1,6 @@
 import { useState } from 'react';
-export const useFocus = (initialFocus = false, id = "") => {
+
+export const useFocus = (initialFocus = false, id = '') => {
   const [focus, setFocus] = useState(initialFocus);
   return ([
     setFocus, {
