@@ -23,6 +23,7 @@ All components are implemented using ReactHooks. The application state is manage
  -  IdeaBoard
 	 - Nav Panel
 	 - Idea List Component
+    	 - Idea View Component
 	 - Idea Input Component 
 
 
