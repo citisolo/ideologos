@@ -45,27 +45,18 @@ const IdeaCardWrapper = styled.div`
 
   .readonly-list-item-group {
     margin: 1em;
-    width:100%;
   }
 
-  .readonly-list-item-group {
-    input {
-      padding: .5rem;
-      border: none;
-    }
-    textarea  {
-      padding: .5rem;
-      border: none;
-    }
+  .readonly-list-item-group input, .readonly-list-item-group textarea {
+    padding: .5rem;
+    border: 1px solid transparent; 
+  }
 
-   }
+  .readonly-list-item-group :focus{
+    outline: none;
+  }
 
-   .readonly-list-item-group :focus{
-     outline: none;
-   }
-
-
-   button {
+  button {
     padding: .7rem;
     border-radius: .3rem;
     border: 1px solid rgba(34,36,38,.15);
